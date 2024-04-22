@@ -18,9 +18,10 @@
             <p>The processor was built using Flask, to process queries in json format, sorting based on similarity scores and returning the top-K ranked results based on the indexed documents.</p></ul></li>
     </ol> 
     <p> Relevant Literature:</p>
-        <p>This project draws knowledge and concpets mainly from the textbook <em>Introduction to Information Retrieval</em> by Chirstopher D Manning, Prabhakar Raghavan and Hinrich Schutze. The book outlines information retrieval using a modern apprach from a computer science perspective.</p>
+        <p>This project draws knowledge and concpets mainly from the textbook <em>Introduction to Information Retrieval</em> by Chirstopher D Manning, Prabhakar Raghavan and Hinrich Schutze. The book offers a breakdown of information retrieval using a modern apprach from a computer science perspective.</p>
+        <p> This project touches topics covered in the textbook such as: index construction, scoring, term weighting and the vector space model, computing cosine similarity scores, and ranked retrieval.  </p>
 <h2> Design </h2>
-
+    <p>
 <h2> Architecture </h2>
 
 <h2> Operation </h2>
