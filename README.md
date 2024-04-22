@@ -5,10 +5,20 @@
     <p>The objective for this project was to imitate and create a smaller scale version of a web document retrieval system and implement all the knowledge acquired over the course of the semester about IR. The design of this system emphasizes ease and a base level implementation. </p>
     <p>Next steps for this project would be to advance the different components with a deeper understanding and further research. Specifically, the crawler could be further developed to implement concurrent and distributed crawling. The indexer would potentially use vector embedding representation and semantic search using kNN similarity. The processor would integrate additional features such as query spelling-correction and expansion. Next steps would also include evaluation of the system’s performance on large-scale datasets. <br  /> <br  />In the end, this basic implementation paves way for a robust web document retrieval system and knowledge surfing. 
 </p>
-    <hr  />
+
 
 <h2> Overview </h2>
-
+<p>This project consists or three main parts:</p>
+    <ol>
+        <li> Web Document Crawler:<ul>
+            <p>Implemented using Scrapy, the crawler basically accesses and retrieves web documents using seed URL, while specifying max pages and depth.</p></ul></li>
+        <li>Indexer:<ul>
+            <p>The indexer is built using Scikit-Learn where it outputs an inverted index of TF-IDF weight representation and cosine similarities.</p></ul></li>
+        <li>Query Processor:<ul>
+            <p>The processor was built using Flask, to process queries in json format, sorting based on similarity scores and returning the top-K ranked results based on the indexed documents.</p></ul></li>
+    </ol> 
+    <p> Relevant Literature:</p>
+        
 <h2> Design </h2>
 
 <h2> Architecture </h2>
