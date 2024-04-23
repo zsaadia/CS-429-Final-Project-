@@ -30,12 +30,22 @@
     <p>The indexer utilizes the python library Scikit-Learn also known as sklearn. It allows for classification and retrieval of query terms and creation of an inverted index.</p>
     <p>The query processor is Flask based which provides a small scalable web server for handling user queries.  </p>
 <h2> Operation </h2>
-
+    <p>The operation of the system requires the user to interact and start the individual components and make sure they have Python 3.10+ and the respective proper softwares and libraries.</p>
+    <p>For the crawler, the user needs to make sure they have scrpy installed which can easily be done through pip and have a spider running. The inputs here are the seed URLs and the specifications for the pages and depth.  </p>
+    <p>For the indexer, the user needs to make sure the scikit-learn python package is installed. It does not require manual execution because the indexer is given the queries. </p>
+    <p>For the processor, the user needs to have flask installed. To operate the processor, first run the processor file, then the command <code>python3 test_processor.py </code> for Mac or linux or <code> py -3 test_processor.py</code> for Windows. </p>
 <h2> Conclusion </h2>
+    <p>The system was successful in creating a comprehensive solution for web document retrieval. Each component perfroms their unique capabilities and successfully prints results. It demonstrates the use of open-source Python libraries and frameworks.</p>
+
+<h2>Data Sources</h2>
+    <p>No external data sources were used expect in the crawler for the seed URLs which used wikipedia pages and a quotes website. </p>
 
 <h2> Test Cases </h2>
-
+    <p> For the crawler, the test cases are provided in crawler_test.py which have three different URLs for the program to crawl.</p>
+    <p>For the indexer, the test case that was provided in the indexer program has been copied to its own file named indexer_test to make it easier to see and understand.</p>
+    <p>The processor also has its own test file named test_processor that is used to run the code and display the output.</p>
 <h2> Source Code </h2>
+    <p> For this project the source code was produced by ChatGPT.   </p>
 
 <h2> Bibliography </h2>
     <p>Chatgpt. Accessed April 23, 2024. https://chat.openai.com. </p>
