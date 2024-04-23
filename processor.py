@@ -34,7 +34,7 @@ def add_documents():
 @app.route('/query', methods=['POST'])
 def process_query():
     global tfidf_matrix
-    
+
     # Get JSON data from request
     data = request.json
     
@@ -69,4 +69,3 @@ def process_query():
 if __name__ == '__main__':
     # Run the Flask application
     app.run(debug=True)
-

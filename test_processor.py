@@ -1,33 +1,69 @@
-import requests
+import unittest
+import json
+from processor import app
 
-# Function to add documents to the Flask application
-def add_documents(documents):
-    url = 'http://127.0.0.1:5000/add_documents'
-    response = requests.post(url, json={'documents': documents})
-    return response
+class TestProcessor(unittest.TestCase):
 
-# Function to make queries to the Flask application
-def process_query(query):
-    url = 'http://127.0.0.1:5000/query'
-    response = requests.post(url, json={'query': query})
-    return response
+    def setUp(self):
+        app.testing = True
+        self.app = app.test_client()
 
-# Add documents to the Flask application
-documents = [
-    "This is the first document",
-    "This document is the second document",
-    "And this is the third one",
-    "Is this the first document?"
-]
-add_documents_response = add_documents(documents)
-print("Documents added successfully")
+    def test_add_documents(self):
+        # Test adding documents
+        documents = [
+            "This is the first document",
+            "This document is the second document",
+            "And this is the third one",
+            "Is this the first document?"
+        ]
+        response = self.app.post('/add_documents', json={'documents': documents})
+        self.assertEqual(response.status_code, 200)
+        data = json.loads(response.data)
+        self.assertEqual(data['message'], 'Documents added successfully')
+        print("\nAdd Documents Test:")
+        print("Status Code:", response.status_code)
+        print("Response Data:", data)
 
-# Make queries to the Flask application
-queries = ["document", "second document", "third", "this"]
-for query in queries:
-    response = process_query(query)
-    print("Query:", query)
-    if response.status_code == 200:
-        print("Response:", response.json())
-    else:
-        print("Error:", response.status_code, "-", response.text)
+    def test_process_query(self):
+        # Add documents
+        documents = [
+            "This is the first document",
+            "This document is the second document",
+            "And this is the third one",
+            "Is this the first document?",
+        ]
+        self.app.post('/add_documents', json={'documents': documents})
+
+        # Test processing queries
+        queries = ["document", "second document", "third", "this"]
+        for query in queries:
+            response = self.app.post('/query', json={'query': query})
+            self.assertEqual(response.status_code, 200)
+            data = json.loads(response.data)
+            print("\nProcess Query Test:")
+            print("Query:", query)
+            print("Status Code:", response.status_code)
+            print("Response Data:", data)
+
+    def test_empty_query(self):
+        # Test query with empty query
+        response = self.app.post('/query', json={'query': ' '})
+        self.assertEqual(response.status_code, 400)
+        data = json.loads(response.data)
+        print("\nEmpty Query Test:")
+        print("Status Code:", response.status_code)
+        print("Response Data:", data)
+
+    def test_missing_query_key(self):
+    # Test query with missing 'query' key
+        response = self.app.post('/query', json={})
+        self.assertEqual(response.status_code, 400)
+        data = json.loads(response.data)
+        self.assertEqual(data['error'], 'Query key is missing in JSON data')
+        print("\nMissing Query Key Test:")
+        print("Status Code:", response.status_code)
+        print("Response Data:", data)
+
+if __name__ == '__main__':
+    unittest.main()
+
